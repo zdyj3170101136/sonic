@@ -5,6 +5,7 @@ go 1.15
 require (
 	github.com/chenzhuoyu/base64x v0.0.0-20221115062448-fe3a3abad311
 	github.com/davecgh/go-spew v1.1.1
+	github.com/felixge/fgprof v0.9.3
 	github.com/klauspost/cpuid/v2 v2.0.9
 	github.com/stretchr/testify v1.8.1
 	github.com/twitchyliquid64/golang-asm v0.15.1
