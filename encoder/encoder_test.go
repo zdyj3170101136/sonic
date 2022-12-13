@@ -19,6 +19,7 @@ package encoder
 import (
 	"bytes"
 	"encoding/json"
+	"log"
 	"os"
 	"runtime"
 	"runtime/debug"
@@ -46,9 +47,17 @@ func TestMain(m *testing.M) {
 	}()
 	time.Sleep(time.Millisecond)
 	if os.Getenv("fgprofile") != "" {
-		f, _ := os.Open(os.Getenv("fgprofile"))
+		f, err := os.Open(os.Getenv("fgprofile"))
+		if err != nil {
+			log.Fatal(err)
+		}
 		cancel := fgprof.Start(f, fgprof.FormatPprof)
-		defer cancel()
+		defer func() {
+			err = cancel()
+			if err != nil {
+				log.Fatal(err)
+			}
+		}()
 	}
 	m.Run()
 }
