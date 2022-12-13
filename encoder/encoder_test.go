@@ -47,7 +47,7 @@ func TestMain(m *testing.M) {
 	}()
 	time.Sleep(time.Millisecond)
 	if os.Getenv("fgprofile") != "" {
-		f, err := os.Open(os.Getenv("fgprofile"))
+		f, err := os.Create(os.Getenv("fgprofile"))
 		if err != nil {
 			log.Fatal(err)
 		}
